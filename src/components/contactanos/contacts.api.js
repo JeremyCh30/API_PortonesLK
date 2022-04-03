@@ -18,13 +18,13 @@ const transporter=nodeMailer.createTransport({
 module.exports.registrarContacto = function (req, res) {
 
     let nuevoContacto = new contactModel({
-        hora: req.body.hora,
-        fecha: req.body.fecha,
         nombre: req.body.nombre,
         telefono: req.body.telefono,
         email: req.body.email,
         servicio: req.body.servicio,
-        mensaje: req.body.mensaje
+        mensaje: req.body.mensaje,
+        hora: req.body.hora,
+        fecha: req.body.fecha,
     });
 
     //mensaje creado apartir de los datos del formulario
@@ -41,7 +41,7 @@ module.exports.registrarContacto = function (req, res) {
                     from: 'whatsapp:+14155238886',       
                     to: 'whatsapp:+50671874841' 
                 }) 
-                .then(message => console.log(message.sid)) 
+                .then(message => console.log("Mensaje enviado, ID: "+message.sid)) 
                 .done();
             
             //Se envia mensaje de correo con los datos de la persona que envia el mensaje
@@ -110,7 +110,7 @@ module.exports.registrarContacto = function (req, res) {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log('Correo enviado' + info.response);
+                    console.log('Correo enviado: ' + info.response);
                 };
             });
 
