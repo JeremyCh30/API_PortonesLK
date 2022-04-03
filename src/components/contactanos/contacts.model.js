@@ -7,7 +7,7 @@ const contactSchema = new mongoose.Schema({
     servicio: { type: String, required: true },
     mensaje: { type: String, required: true },
     hora: { type: String, required: false },
-    fecha: { type: Date, required: false },
+    fecha: { type: String, required: false },
 
 });
 
