@@ -6,6 +6,22 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 9000;
 
+/**
+ Le indicamos a la aplicación que el formato de los datos va a ser JSON
+ */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(morgan('dev'));
+
+app.use( function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+
 //middlewares
 const contactsRoutes = require('./components/contactanos/contacts.route');
 app.use(express.json());
