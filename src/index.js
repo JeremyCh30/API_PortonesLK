@@ -9,9 +9,6 @@ const port = process.env.PORT || 9000;
 /**
  Le indicamos a la aplicación que el formato de los datos va a ser JSON
  */
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(morgan('dev'));
 
 app.use( function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
